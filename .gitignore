@@ -483,5 +483,5 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Зависимости Composer
-/vendor/
+# Игнорировать папку vendor во всех подкаталогах
+**/vendor/

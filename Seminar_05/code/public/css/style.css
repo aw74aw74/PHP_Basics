@@ -1,0 +1,46 @@
+/* Общие стили для body */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Стили для шапки */
+header {
+    grid-area: header;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Стили для боковой колонки */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Стили для основного контента */
+.content {
+    grid-area: content;
+    padding: 20px;
+}
+
+/* Стили для подвала */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    position: sticky;
+    bottom: 0;
+}

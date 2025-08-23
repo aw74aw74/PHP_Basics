@@ -15,8 +15,11 @@ services:
       - "80:80"
     volumes:
        - ./code:/data/mysite.local
+       - ./nginx/hosts:/etc/nginx/conf.d
     networks:
-      - app-network
+      - my_network
+    depends_on:
+      - application
 
   #Контейнер с PHP-FPM, назовём его app
   application:
@@ -28,9 +31,11 @@ services:
     container_name: application # имя контейнера после запуска
     volumes:
        - ./code:/data/mysite.local
-    # мы можем создать для контейнеров внутреннюю сеть
     networks:
-      - app-network
+      - my_network
+    depends_on:
+      mysql:
+        condition: service_healthy
 
    #Контейнер с PHP-FPM, назовём его app
   cli:
@@ -42,28 +47,32 @@ services:
     container_name: cli # имя контейнера после запуска
     volumes:
        - ./code:/data/mysite.local
-    # мы можем создать для контейнеров внутреннюю сеть
     networks:
-      - app-network
+      - my_network
 
-  #Контейнер с БД
-  database:
-    image: mysql:5.7
-    container_name: database # имя контейнера после запуска
+  #Контейнер с базой данных MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      MYSQL_DATABASE: ${DB_NAME} # имя нашей БД
-      MYSQL_USER: ${DB_USER} # имя пользователя, с которым будет подключаться 
-      MYSQL_PASSWORD: ${DB_PASSWORD} # пароль для пользователя
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD} # администраторский пароль
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: geekbrains
     ports:
       - "3306:3306"
     volumes:
-        - ./db:/var/lib/mysql
-    # мы можем создать для контейнеров внутреннюю сеть
+      - ./DB:/var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
     networks:
-      - app-network
+      - my_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 #Docker Networks
 networks:
-  app-network:
+  my_network:
     driver: bridge

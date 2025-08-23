@@ -2,13 +2,13 @@
 
 require_once('./vendor/autoload.php');
 
-use Geekbrains\Application1\Application\Application;
-use Geekbrains\Application1\Application\Render;
+use Geekbrains\Application1\Application;
+use Geekbrains\Application1\Render;
 
 try{
     $app = new Application();
     echo $app->run();
 }
-catch(Exception $e){
+catch(\Throwable $e){
     echo Render::renderExceptionPage($e);
 }

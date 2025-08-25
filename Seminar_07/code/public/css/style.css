@@ -1,0 +1,142 @@
+/* Общие стили для body */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Стили для шапки */
+header {
+    grid-area: header;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Стили для боковой колонки */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Стили для основного контента */
+.content {
+    grid-area: content;
+    padding: 20px;
+}
+
+/* Стили для подвала */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Стили для блока аутентификации в шапке */
+.auth-block a {
+    color: white;
+    text-decoration: none;
+}
+
+.auth-block a:hover {
+    text-decoration: underline;
+}
+
+/* --- Стили для кнопок --- */
+
+/* Общий стиль для кнопок и ссылок-кнопок */
+.btn, .btn-delete {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    margin: 2px;
+}
+
+/* Стили для кнопки-ссылки "Отмена" */
+.btn-cancel {
+    background-color: #6c757d; /* Серый */
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+/* Стили для кнопки "Сохранить" */
+.btn-save {
+    background-color: #007bff; /* Синий */
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #0069d9;
+}
+
+/* Стили для кнопки "Удалить" */
+.btn-delete {
+    background-color: #dc3545; /* Красный */
+    color: white;
+    font-family: sans-serif; /* Наследуем шрифт */
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Стили для кнопки "Добавить" */
+.btn-add {
+    background-color: #28a745; /* Зеленый */
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #218838;
+}
+
+/* Стили для кнопки "Редактировать" */
+.btn-edit {
+    background-color: #ffc107; /* Оранжевый */
+    color: #212529;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+}
+
+/* Стили для кнопки "Войти" */
+.btn-login {
+    background-color: #007bff; /* Синий */
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #0069d9;
+}
+
+/* Стили для кнопки "Выйти" */
+.btn-logout {
+    background-color: #6c757d; /* Серый */
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #5a6268;
+}
